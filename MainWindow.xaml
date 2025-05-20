@@ -6,20 +6,41 @@
         xmlns:local="clr-namespace:encryptionMachine"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    
-    
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Margin" Value="0 20 0 0"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="Background" Value="LightGray"></Setter>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Visible"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="MaxWidth" Value="250"/>
+            <Setter Property="MaxHeight" Value="60"/>
+            <Setter Property="MinHeight" Value="60"/>
+            
+            
+        </Style>
+    </Window.Resources>
+
     <Grid x:Name="grid1">
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/cezar.jpg"></ImageBrush></Grid.Background>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Vertical">
-            <TextBox x:Name="userInput" Height="40" Width="250" Margin="480 300 0 0" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Background="LightGray" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap"></TextBox>
-            <StackPanel Orientation="Horizontal">
-                <Button FontSize="20" Width="100" Margin="510 20 0 0" Click="Encrypt_Click">Encrypt</Button>
-                <Button FontSize="20" Width="100" Margin="47 20 0 0" Click="Decrypt_Click">Decrypt</Button>
-            </StackPanel>
+            <ImageBrush ImageSource="/Images/cezar.jpg"></ImageBrush>
+        </Grid.Background>
+        <StackPanel MinWidth="250" MinHeight="130" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 50 20">
+            <TextBox x:Name="userInput" Margin="0 20 0 0"></TextBox>
+            <DockPanel>
+                <Button HorizontalAlignment="Left" Command="{x:Static local:CustomCommands.Encrypt}">Encrypt</Button>
+                <Button HorizontalAlignment="Right" Command="{x:Static local:CustomCommands.Decrypt}">Decrypt</Button>
+            </DockPanel>
         </StackPanel>
     </Grid>
 </Window>

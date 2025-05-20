@@ -26,13 +26,21 @@ namespace encryptionMachine
         {
             InitializeComponent();
             encryptor = new Encryptor();
+            CommandBinding encryptCommand = new CommandBinding(CustomCommands.Encrypt, executeEncrypt, canExecuteEncryptOrDecrypt);
+            CommandBindings.Add(encryptCommand);
+            CommandBinding decryptCommand = new CommandBinding(CustomCommands.Decrypt, executeDecrypt, canExecuteEncryptOrDecrypt);
+            CommandBindings.Add(decryptCommand);
         }
 
-        private void Encrypt_Click(object sender, RoutedEventArgs e)
+        void canExecuteEncryptOrDecrypt(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (userInput.Text.Trim().Length > 0) e.CanExecute = true; else e.CanExecute = false;
+        }
+        void executeEncrypt(object sender, ExecutedRoutedEventArgs e)
         {
             userInput.Text = encryptor.ceazarEncryption(userInput.Text);
         }
-        private void Decrypt_Click(object sender, RoutedEventArgs e)
+        void executeDecrypt(object sender, ExecutedRoutedEventArgs e)
         {
             userInput.Text = encryptor.caezarDecryption(userInput.Text);
         }
